@@ -1,0 +1,49 @@
+package com.mrmoin.selenium.webpages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+
+public class FacebookTest {
+	public String bu = "https://www.facebook.com";
+	public WebDriver driver;
+
+	@BeforeSuite
+	public void betest() {
+		driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get(bu);
+		System.out.println(driver.getWindowHandles().size());
+	}
+
+	@Test(priority = 2)
+	public void test2() {
+		String tilte = driver.getTitle();
+		System.out.println(tilte);
+	}
+
+	@Test(priority = 1)
+	public void test1() {
+		driver.get(bu);
+		driver.findElement(By.id("email")).sendKeys("moinuddinbtech@gmail.com");
+		//Make sure that you edit the password with your password
+		driver.findElement(By.id("pass")).sendKeys("password");
+		driver.findElement(By.id("loginbutton")).submit();
+		// System.out.println(title);
+	}
+
+	@Test(priority = 3)
+	public void test3() throws InterruptedException {
+		WebElement lstitem = driver.findElement(By.id("userNavigationLabel"));
+		lstitem.click();
+		Thread.sleep(10000);
+		
+		////*[@id="u_j_8"]/div/div/div[1]/div/div/ul/li[23]/a/span/span
+//		driver.findElement(By.xpath("//div[@id='u_j_8']/div/div/div[1]/div/div/ul/li[23]")).click();
+		driver.findElement(By.partialLinkText("Log Out")).click();
+	}
+
+}
