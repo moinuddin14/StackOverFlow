@@ -28,7 +28,8 @@ public class FacebookTest {
 	@Test(priority = 1)
 	public void test1() {
 		driver.get(bu);
-		driver.findElement(By.id("email")).sendKeys("moinuddinbtech@gmail.com");
+		//Make sure that you edit the username with your username
+		driver.findElement(By.id("email")).sendKeys("username");
 		//Make sure that you edit the password with your password
 		driver.findElement(By.id("pass")).sendKeys("password");
 		driver.findElement(By.id("loginbutton")).submit();
